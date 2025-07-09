@@ -41,7 +41,7 @@ public class Oauth2Controller implements AuthenticationSuccessHandler {
         User user = findOrCreateUser(email, oAuth2User);
         String jwt = jwtService.generateToken(user);
 
-        response.sendRedirect("http://127.0.0.1:5501/dashboard.html?token=" + jwt);
+        response.sendRedirect("https://todo-frontend-shreyas.vercel.app/dashboard.html?token=" + jwt);
 
     }
 

@@ -57,11 +57,11 @@ public class LoginController {
         String result = authService.validateToken(token);
         if (result.equalsIgnoreCase("valid")) {
             authService.enableUser(token);
-            response.sendRedirect("http://127.0.0.1:5501/verify-success.html?status=success");
+            response.sendRedirect("https://todo-frontend-shreyas.vercel.app/verify-success.html?status=success");
         } else if (result.equalsIgnoreCase("expired")) {
-            response.sendRedirect("http://127.0.0.1:5501/verify-error.html?status=expired");
+            response.sendRedirect("https://todo-frontend-shreyas.vercel.app/verify-error.html?status=expired");
         } else {
-            response.sendRedirect("http://127.0.0.1:5501/verify-error.html?status=invalid");
+            response.sendRedirect("https://todo-frontend-shreyas.vercel.app/verify-error.html?status=invalid");
         }
     }
 
@@ -77,7 +77,7 @@ public class LoginController {
             String token= UUID.randomUUID().toString();
             authService.createPasswordToken(token,user);
             emailService.sendPasswordResetEmail(user.getUserName(),token, user.getUserName());
-            url= "http://127.0.0.1:5501/password-reset.html?token=" + token;
+            url= "https://todo-frontend-shreyas.vercel.app/password-reset.html?token=" + token;
         }
         return url;
     }
@@ -85,10 +85,10 @@ public class LoginController {
     @PostMapping("/savePassword")
     public void savePassword(@RequestParam("token") String token, @RequestBody PasswordResetModel passwordResetModel, final HttpServletResponse response) throws IOException {
         if(!authService.savePassword(token, passwordResetModel.getPassword())){
-            response.sendRedirect("http://127.0.0.1:5501/verify-error.html");
+            response.sendRedirect("https://todo-frontend-shreyas.vercel.app/verify-error.html");
         }
         else{
-            response.sendRedirect("http://127.0.0.1:5501/index.html?passwordReset=true");
+            response.sendRedirect("https://todo-frontend-shreyas.vercel.app/index.html?passwordReset=true");
         }
     }
 
